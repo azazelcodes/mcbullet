@@ -1,0 +1,60 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'java'
+    id 'net.minecrell.plugin-yml.paper' version '0.6.0'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "PaperMC"
+        url = 'https://papermc.io/repo/repository/maven-public/'
+    }
+}
+
+dependencies {
+    // Paper API dependency
+    compileOnly 'io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT' // Adjust to your server version
+    // Cloud Commands dependencies
+    implementation 'org.incendo:cloud-core:2.0.0-rc.2'
+    implementation 'org.incendo:cloud-annotations:2.0.0-rc.2'
+    implementation 'org.incendo:cloud-minecraft-extras:2.0.0-beta.8'
+    implementation 'org.incendo:cloud-paper:2.0.0-beta.8'
+    // Adventure dependencies
+    implementation "net.kyori:adventure-text-minimessage:4.17.0"
+    // jBullet dependencies
+    implementation 'cz.advel.jbullet:jbullet:20101010-1'
+    implementation 'javax.vecmath:vecmath:1.5.2'
+}
+
+paper {
+    // Default values can be overridden if needed
+    name = 'mcBullet'
+    version = '0.0.1'
+    description = 'Implementation of the jBullet physics engine in Minecraft!'
+    authors = ['azazeldev']
+
+    main = 'me.azazeldev.mcbullet.Main'
+
+    generateLibrariesJson = true
+
+    foliaSupported = true
+
+    apiVersion = '1.20.4'
+
+    load = 'POSTWORLD'
+
+    permissions {
+        'mcbullet.*' {
+            children = ['mcbullet.spawn']
+        }
+        'mcbullet.spawn' {
+            description = 'Allows you to spawn blocks, entities and ground!'
+            setDefault('OP')
+        }
+    }
+}
+
+build {
+    dependsOn(shadowJar) // maybe shadowing in jbullet would be better than having cloud in it aswell?
+}
