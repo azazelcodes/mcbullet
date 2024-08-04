@@ -1,14 +1,14 @@
 <div align="center">
   
-![mcbulletlogo](https://github.com/user-attachments/assets/40181e90-d280-4217-a55e-5c3576869aa9)
+<img src="https://github.com/user-attachments/assets/40181e90-d280-4217-a55e-5c3576869aa9" width="200px" />
 
 <h2> jBullet in Minecraft </h2>
 <sub><sup>I published it before Sethbling did</sup></sub>
 
 [![GitHub release](https://img.shields.io/github/v/release/azazelcodes/mcbullet?color=blue&label=release)]()
 [![GitHub issues](https://img.shields.io/github/issues/azazelcodes/mcbullet?color=red)]()
-[![GitHub stars](https://img.shields.io/github/stars/azazeldev/mcbullet)]()
-[![Static Badge](https://img.shields.io/badge/paper?logo=educative&logoColor=%231F2937&label=built%20with&color=%233B82F6&link=https%3A%2F%2Fpapermc.io%2Fsoftware%2Fpaper)]()
+[![GitHub stars](https://img.shields.io/github/stars/azazelcodes/mcbullet)]()
+[![Static Badge](https://img.shields.io/badge/paper?logo=educative&logoColor=%231F2937&label=built%20with&color=%233B82F6&link=https%3A%2F%2Fpapermc.io%2Fsoftware%2Fpaper)]() <!-- why no work -->
 
 Create a physics world, set a ground plane and spawn softbodies all from a PaperMC plugin!
 </div>
