@@ -25,7 +25,7 @@ The main branch contains the releases, which can be installed like any other plu
 mcBullet **requires** running on a Paper or Paper derivative! <br>
 The development branch contains unstable features *(not right now)* and has to be built on your machine using gradle. <br>
 <br>
-The physics world is created on server start.
+The physics world is created on plugin enable.
 
 ## 📝 Commands
 /bullethelp - displays the commands ingame <br>
