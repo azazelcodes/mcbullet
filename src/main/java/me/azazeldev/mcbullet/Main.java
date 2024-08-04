@@ -100,7 +100,7 @@ public class Main extends JavaPlugin implements Listener {
             commandManager.registerAsynchronousCompletions();
         }
 
-        AnnotationParser annotationParser = new AnnotationParser(commandManager, CommandSender.class, parameters -> SimpleCommandMeta.empty());
+        AnnotationParser annotationParser = new AnnotationParser(commandManager, CommandSender.class, parameters -> SimpleCommandMeta.empty()); // 1.20.5 dies here? and 1.20.4 just doesnt work even with the legacy thing!
         annotationParser.parse(this);
 
         // Help Command + Prefix
