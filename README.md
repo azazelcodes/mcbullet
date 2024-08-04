@@ -1,6 +1,6 @@
 <div align="center">
   
-<img src="https://github.com/user-attachments/assets/40181e90-d280-4217-a55e-5c3576869aa9" width="400px" />
+<img src="https://github.com/user-attachments/assets/40181e90-d280-4217-a55e-5c3576869aa9" width="600px" />
 
 <h2> jBullet in Minecraft </h2>
 <sub><sup>I published it before Sethbling did</sup></sub>
