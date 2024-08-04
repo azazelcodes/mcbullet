@@ -12,7 +12,9 @@
 
 Create a physics world, set a ground plane and spawn softbodies all from a PaperMC plugin!
 </div>
+
 ## 🗺️ Content
+
 - [<code>📦 Installation</code>](#-installation)
 - [<code>📝 Commands</code>](#-commands)
 - [<code>⚙️ Configuration</code>](#-configuration)
