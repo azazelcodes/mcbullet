@@ -230,7 +230,7 @@ public class Main extends JavaPlugin implements Listener {
         sender.sendMessage(message);
     }
 
-    @Command("timemult|timestep|delta set <multiplier>")
+    @Command("time|timemult|timestep|delta set <multiplier>")
     public void setPhysicsTime (
             CommandSender sender,
             @Argument(value = "multiplier", description = "Speed multiplier of the physics time (Default: 1)") float targetMult
@@ -255,7 +255,7 @@ public class Main extends JavaPlugin implements Listener {
         Component message = mini.deserialize(
                 prefix +
                         "<#D9CFF2>The physics are calculating <gray><time></gray> substeps per physics tick at the moment.",
-                Placeholder.component("steps",
+                Placeholder.component("time",
                         Component.text(physicsTime)
                 )
         );
