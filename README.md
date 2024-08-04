@@ -1,1 +1,3 @@
-![mcbulletlogo](https://github.com/user-attachments/assets/ae4c8c90-4921-4cfa-a015-12ca92dac3c5)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/72f90978-f813-494b-bdd5-1e403d0aa52e">
+</p>
