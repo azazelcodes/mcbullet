@@ -230,7 +230,7 @@ public class Main extends JavaPlugin implements Listener {
         sender.sendMessage(message);
     }
 
-    @Command("settime|timemult|timestep|deltaset <multiplier>")
+    @Command("timemult|timestep|delta set <multiplier>")
     public void setPhysicsTime (
             CommandSender sender,
             @Argument(value = "multiplier", description = "Speed multiplier of the physics time (Default: 1)") float targetMult
@@ -248,22 +248,22 @@ public class Main extends JavaPlugin implements Listener {
         sender.sendMessage(message);
     }
 
-    @Command("settime|timemult|timestep|deltaset <multiplier>")
-    public void getPhysicsTime ( // This kinda useless aswell?
+    @Command("time|timemult|timestep|delta get")
+    public void getPhysicsTime (
                               CommandSender sender
     ) {
         Component message = mini.deserialize(
                 prefix +
-                        "<#D9CFF2>The physics are calculating <gray><steps></gray> substeps per physics tick at the moment.",
+                        "<#D9CFF2>The physics are calculating <gray><time></gray> substeps per physics tick at the moment.",
                 Placeholder.component("steps",
-                        Component.text(physicsSubsteps)
+                        Component.text(physicsTime)
                 )
         );
 
         sender.sendMessage(message);
     }
 
-    @Command("setstep|calcstep|setcalc|setsub|substeps set <steps>")
+    @Command("calcstep|calc|sub|substeps set <steps>")
     public void setPhysicsSteps ( // This kinda useless?
             CommandSender sender,
             @Argument(value = "steps", description = "How many calculation sub steps should be done for each physics tick (Default: 300)") int targetSteps
@@ -281,7 +281,7 @@ public class Main extends JavaPlugin implements Listener {
         sender.sendMessage(message);
     }
 
-    @Command("setstep|calcstep|setcalc|setsub|substeps get")
+    @Command("step|calcstep|calc|sub|substeps get")
     public void getPhysicsSteps ( // This kinda useless aswell?
                               CommandSender sender
     ) {
