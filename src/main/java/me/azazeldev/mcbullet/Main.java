@@ -56,7 +56,6 @@ import java.util.stream.Stream;
 import static org.incendo.cloud.parser.standard.StringParser.greedyStringParser;
 
 // PLEASE OPTIMIZE THIS! its laggy sometimes + lots of collision errors like clipping in the floor (? maybe also just wrong rotation)
-@SuppressWarnings({"rawtypes", "unchecked", "WriteOnlyObject"}) // These are just so I don't get stupid warnings in IDE sorrii <3
 public class Main extends JavaPlugin implements Listener {
     private DiscreteDynamicsWorld dynamicsWorld;
     private final Map<Entity, RigidBody> bodies = new ConcurrentHashMap<>();
@@ -100,13 +99,13 @@ public class Main extends JavaPlugin implements Listener {
             commandManager.registerAsynchronousCompletions();
         }
 
-        AnnotationParser annotationParser = new AnnotationParser(commandManager, CommandSender.class, parameters -> SimpleCommandMeta.empty()); // 1.20.5 dies here? and 1.20.4 just doesnt work even with the legacy thing!
+        AnnotationParser<CommandSender> annotationParser = new AnnotationParser<>(commandManager, CommandSender.class, parameters -> SimpleCommandMeta.empty());
         annotationParser.parse(this);
 
         // Help Command + Prefix
         mini = MiniMessage.miniMessage();
 
-        prefix = mini.deserialize("<yellow>[<rainbow>mcBullet</rainbow><yellow>] ");
+        prefix = mini.deserialize("<yellow>[<gray>mcBullet</gray><yellow>] ");
 
         MinecraftHelp<CommandSender> help = MinecraftHelp.createNative(
                 "/bullethelp",
@@ -207,10 +206,9 @@ public class Main extends JavaPlugin implements Listener {
             bodies.remove(physObj, body);
         }
 
-        Component message = mini.deserialize(
-                prefix +
-                        "<#D9CFF2>Killed all physics objects in this physics world!"
-        );
+        Component message = Component.empty()
+                .append(prefix)
+                .append(mini.deserialize("<#D9CFF2>Killed all physics objects in this physics world!"));
 
         sender.sendMessage(message);
     }
@@ -219,13 +217,14 @@ public class Main extends JavaPlugin implements Listener {
     public void count(
             CommandSender sender
     ) {
-        Component message = mini.deserialize(
-                prefix +
+        Component message = Component.empty()
+                .append(prefix)
+                .append(mini.deserialize(
                         "<#D9CFF2>There are <gray><size></gray> physics objects in this physics world!",
-                Placeholder.component("size",
-                        Component.text(bodies.size())
-                )
-        );
+                        Placeholder.component("size",
+                                Component.text(bodies.size())
+                        ))
+                );
 
         sender.sendMessage(message);
     }
@@ -237,13 +236,14 @@ public class Main extends JavaPlugin implements Listener {
     ) {
         physicsTime = targetMult;
 
-        Component message = mini.deserialize(
-                prefix +
+        Component message = Component.empty()
+                .append(prefix)
+                .append(mini.deserialize(
                         "<#D9CFF2>The physics are now running at <gray><speed>x</gray> speed!",
-                Placeholder.component("speed",
-                        Component.text(physicsTime)
-                )
-        );
+                        Placeholder.component("speed",
+                                Component.text(physicsTime)
+                        ))
+                );
 
         sender.sendMessage(message);
     }
@@ -252,13 +252,14 @@ public class Main extends JavaPlugin implements Listener {
     public void getPhysicsTime (
                               CommandSender sender
     ) {
-        Component message = mini.deserialize(
-                prefix +
+        Component message = Component.empty()
+                .append(prefix)
+                .append(mini.deserialize(
                         "<#D9CFF2>The physics are calculating <gray><time></gray> substeps per physics tick at the moment.",
-                Placeholder.component("time",
-                        Component.text(physicsTime)
-                )
-        );
+                        Placeholder.component("time",
+                                Component.text(physicsTime)
+                        ))
+                );
 
         sender.sendMessage(message);
     }
@@ -270,13 +271,14 @@ public class Main extends JavaPlugin implements Listener {
     ) {
         physicsSubsteps = targetSteps;
 
-        Component message = mini.deserialize(
-                prefix +
+        Component message = Component.empty()
+                .append(prefix)
+                .append(mini.deserialize(
                         "<#D9CFF2>The physics are now calculating <gray><steps></gray> substeps per physics tick!",
-                Placeholder.component("steps",
-                        Component.text(physicsSubsteps)
-                )
-        );
+                        Placeholder.component("steps",
+                                Component.text(physicsSubsteps)
+                        ))
+                );
 
         sender.sendMessage(message);
     }
@@ -285,13 +287,14 @@ public class Main extends JavaPlugin implements Listener {
     public void getPhysicsSteps ( // This kinda useless aswell?
                               CommandSender sender
     ) {
-        Component message = mini.deserialize(
-                prefix +
+        Component message = Component.empty()
+                .append(prefix)
+                .append(mini.deserialize(
                         "<#D9CFF2>The physics are calculating <gray><steps></gray> substeps per physics tick at the moment.",
-                Placeholder.component("steps",
-                        Component.text(physicsSubsteps)
-                )
-        );
+                        Placeholder.component("steps",
+                                Component.text(physicsSubsteps)
+                        ))
+                );
 
         sender.sendMessage(message);
     }
@@ -405,22 +408,23 @@ public class Main extends JavaPlugin implements Listener {
             bodies.put(display, body);
 
 
-            Component message = mini.deserialize(
-                    prefix +
+            Component message = Component.empty()
+                    .append(prefix)
+                    .append(mini.deserialize(
                             "<#D9CFF2>Spawned a <gray>1m by 1m block</gray> of <gray><material></gray>, with a mass of <gray><weight>kg</gray>, has a <hover:show_text:'<yellow>friction coefficient'>frico of <gray><frico></gray> and a <hover:show_text:'<yellow>restitution coefficient'>resco of <gray><resco></gray>!",
-                    Placeholder.component("material",
-                            Component.text(type.toString())
-                    ),
-                    Placeholder.component("weight",
-                            Component.text(type.mass)
-                    ),
-                    Placeholder.component("frico",
-                            Component.text(type.friction)
-                    ),
-                    Placeholder.component("resco",
-                            Component.text(type.restitution)
-                    )
-            );
+                            Placeholder.component("material",
+                                    Component.text(type.toString())
+                            ),
+                            Placeholder.component("weight",
+                                    Component.text(type.mass)
+                            ),
+                            Placeholder.component("frico",
+                                    Component.text(type.friction)
+                            ),
+                            Placeholder.component("resco",
+                                    Component.text(type.restitution)
+                            ))
+                    );
 
             sender.sendMessage(message);
         } else {
@@ -498,7 +502,8 @@ public class Main extends JavaPlugin implements Listener {
 
             Vector3f center = new Vector3f();
             center.interpolate(pointA, pointB, 0.5f);
-            Vector3f halfExtents = new Vector3f();
+            Vector3f halfExtents;
+            halfExtents = new Vector3f();
             halfExtents.sub(pointB, pointA);
             halfExtents.scale(0.5f);
 
